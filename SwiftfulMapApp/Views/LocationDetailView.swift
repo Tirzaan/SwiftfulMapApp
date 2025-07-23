@@ -62,11 +62,18 @@ extension LocationDetailView {
     private var descriptionView: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Description")
-                .font(.title)
+                .font(.title2)
                 .fontWeight(.semibold)
             Text(location.description)
                 .font(.headline)
                 .foregroundStyle(.secondary)
+            
+            if let url = URL(string: location.link){
+                Link("Read more on Wikipedia", destination: url)
+                    .font(.headline)
+                    .tint(.blue)
+                    .padding(.top, 8)
+            }
         }
     }
 }
