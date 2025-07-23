@@ -56,4 +56,11 @@ class LocationsViewModel: ObservableObject {
             showLocationsList.toggle()
         }
     }
+    
+    func changeCurrentLocation(location: Location) {
+        withAnimation(.easeInOut) {
+            currentLocation = location
+            showLocationsList = false
+        }
+    }
 }
