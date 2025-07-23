@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct LocationDetailView: View {
     
+    @EnvironmentObject private var viewModel: LocationsViewModel
     let location: Location
     
     var body: some View {
@@ -20,12 +22,15 @@ struct LocationDetailView: View {
                     titleView
                     Divider()
                     descriptionView
+                    Divider()
+                    mapLayer
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
             }
         }
         .ignoresSafeArea()
+        .background(.ultraThinMaterial)
     }
 }
 
@@ -59,6 +64,7 @@ extension LocationDetailView {
         }
     }
     
+    /// The description of the current location
     private var descriptionView: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Description")
@@ -76,8 +82,26 @@ extension LocationDetailView {
             }
         }
     }
+    
+    /// The map of where the current location is
+    private var mapLayer: some View {
+        Map(
+            coordinateRegion: .constant(MKCoordinateRegion(
+            center: location.coordinates,
+            span: viewModel.mapSpan
+        )),
+            annotationItems: [location]) { location in
+                MapAnnotation(coordinate: location.coordinates) {
+                    LocationMapAnnotationView()
+                }
+            }
+            .allowsHitTesting(false)
+            .aspectRatio(1, contentMode: .fit)
+            .clipShape(RoundedRectangle(cornerRadius: 30))
+    }
 }
 
 #Preview {
     LocationDetailView(location: LocationsDataService.locations.first!)
+        .environmentObject(LocationsViewModel())
 }
