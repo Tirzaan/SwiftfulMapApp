@@ -38,7 +38,7 @@ struct LocationPreviewView: View {
 
 extension LocationPreviewView {
     
-    /// The Image of the Location with a white background
+    /// The image of the location with a white background
     private var imageSection: some View {
         ZStack {
             if let imageName = location.imageNames.first {
@@ -54,7 +54,7 @@ extension LocationPreviewView {
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
     
-    /// The Title and Subtitle of the Location
+    /// The title and subtitle of the location
     private var titleSection: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(location.name)
@@ -66,7 +66,7 @@ extension LocationPreviewView {
         }
     }
     
-    /// The Button to show more about the Location
+    /// The button to show more about the location
     private var learnMoreButton: some View {
         Button {
             
@@ -78,7 +78,7 @@ extension LocationPreviewView {
         .buttonStyle(.borderedProminent)
     }
     
-    /// The Button to go to the next Location
+    /// The button to go to the next location
     private var nextButton: some View {
         Button {
             viewModel.changeToNextLocation()

@@ -26,6 +26,8 @@ struct LocationsView: View {
 }
 
 extension LocationsView {
+    
+    /// The top view to show the current location and to select different locations
     private var header: some View {
         
             VStack {
@@ -59,6 +61,25 @@ extension LocationsView {
             .padding()
     }
     
+    /// The bottom view to show a picture of the location, the name, and the city name,
+    /// also has two buttons to learn more and go to next location
+    private var locationsPreview: some View {
+        ZStack {
+            ForEach(viewModel.locations) { location in
+                if viewModel.currentLocation == location {
+                    LocationPreviewView(location: location)
+                        .shadow(radius: 20)
+                        .padding()
+                        .transition(AsymmetricTransition(
+                            insertion: .move(edge: .trailing),
+                            removal: .move(edge: .leading)
+                        ))
+                }
+            }
+        }
+    }
+    
+    /// The map background to show where the locations are and to click to change the current location
     private var mapLayer: some View {
         Map(
             coordinateRegion: $viewModel.mapRegion,
@@ -76,21 +97,6 @@ extension LocationsView {
             .ignoresSafeArea()
     }
     
-    private var locationsPreview: some View {
-        ZStack {
-            ForEach(viewModel.locations) { location in
-                if viewModel.currentLocation == location {
-                    LocationPreviewView(location: location)
-                        .shadow(radius: 20)
-                        .padding()
-                        .transition(AsymmetricTransition(
-                            insertion: .move(edge: .trailing),
-                            removal: .move(edge: .leading)
-                        ))
-                }
-            }
-        }
-    }
 }
 
 #Preview {
