@@ -18,23 +18,8 @@ struct LocationsView: View {
             
             VStack(spacing: 0) {
                 header
-                    .padding()
-                
                 Spacer()
-                
-                ZStack {
-                    ForEach(viewModel.locations) { location in
-                        if viewModel.currentLocation == location {
-                            LocationPreviewView(location: location)
-                                .shadow(radius: 20)
-                                .padding()
-                                .transition(AsymmetricTransition(
-                                    insertion: .move(edge: .trailing),
-                                    removal: .move(edge: .leading)
-                                ))
-                        }
-                    }
-                }
+                locationsPreview
             }
         }
     }
@@ -71,6 +56,7 @@ extension LocationsView {
             .background(.thickMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .shadow(color: .black.opacity(0.3), radius: 20, x: 0, y: 15)
+            .padding()
     }
     
     private var mapLayer: some View {
@@ -88,6 +74,22 @@ extension LocationsView {
             }
         )
             .ignoresSafeArea()
+    }
+    
+    private var locationsPreview: some View {
+        ZStack {
+            ForEach(viewModel.locations) { location in
+                if viewModel.currentLocation == location {
+                    LocationPreviewView(location: location)
+                        .shadow(radius: 20)
+                        .padding()
+                        .transition(AsymmetricTransition(
+                            insertion: .move(edge: .trailing),
+                            removal: .move(edge: .leading)
+                        ))
+                }
+            }
+        }
     }
 }
 
