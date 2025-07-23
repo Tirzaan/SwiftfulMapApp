@@ -30,35 +30,35 @@ extension LocationsView {
     /// The top view to show the current location and to select different locations
     private var header: some View {
         
-            VStack {
-                Button {
-                    viewModel.toggleLocationsList()
-                } label: {
-                    Text(viewModel.currentLocation.name + ", " + viewModel.currentLocation.cityName)
-                        .font(.title2)
-                        .fontWeight(.black)
-                        .foregroundStyle(.primary)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .overlay(alignment: .leading) {
-                            Image(systemName: "arrow.down")
-                                .font(.headline)
-                                .foregroundStyle(.primary)
-                                .padding()
-                                .rotationEffect(Angle(degrees: viewModel.showLocationsList ? 180 : 0))
-                        }
-                }
-                .tint(.primary)
-
-                
-                if viewModel.showLocationsList {
-                    LocationsListView()
-                }
+        VStack {
+            Button {
+                viewModel.toggleLocationsList()
+            } label: {
+                Text(viewModel.currentLocation.name + ", " + viewModel.currentLocation.cityName)
+                    .font(.title2)
+                    .fontWeight(.black)
+                    .foregroundStyle(.primary)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .overlay(alignment: .leading) {
+                        Image(systemName: "arrow.down")
+                            .font(.headline)
+                            .foregroundStyle(.primary)
+                            .padding()
+                            .rotationEffect(Angle(degrees: viewModel.showLocationsList ? 180 : 0))
+                    }
             }
-            .background(.thickMaterial)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .shadow(color: .black.opacity(0.3), radius: 20, x: 0, y: 15)
-            .padding()
+            .tint(.primary)
+            
+            
+            if viewModel.showLocationsList {
+                LocationsListView()
+            }
+        }
+        .background(.thickMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .shadow(color: .black.opacity(0.3), radius: 20, x: 0, y: 15)
+        .padding()
     }
     
     /// The bottom view to show a picture of the location, the name, and the city name,
@@ -94,7 +94,7 @@ extension LocationsView {
                 }
             }
         )
-            .ignoresSafeArea()
+        .ignoresSafeArea()
     }
     
 }
