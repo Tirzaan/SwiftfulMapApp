@@ -16,9 +16,11 @@ struct LocationDetailView: View {
             VStack {
                 imagesView
                 
-                VStack() {
-                    
+                VStack(alignment: .leading, spacing: 16) {
+                    titleView
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
             }
         }
         .ignoresSafeArea()
@@ -27,7 +29,7 @@ struct LocationDetailView: View {
 
 extension LocationDetailView {
     
-    /// the images for the current location as a slide view
+    /// The images for the current location as a slide view
     private var imagesView: some View {
         TabView {
             ForEach(location.imageNames, id: \.self) { imageName in
@@ -41,6 +43,18 @@ extension LocationDetailView {
         .frame(height: 500)
         .tabViewStyle(.page)
         .shadow(radius: 20, y: 10)
+    }
+    
+    /// The name and city name of the current location as the title
+    private var titleView: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(location.name)
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            Text("in \(location.cityName)")
+                .font(.title3)
+                .foregroundStyle(.secondary)
+        }
     }
     
 }
