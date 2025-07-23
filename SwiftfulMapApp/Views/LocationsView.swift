@@ -14,16 +14,7 @@ struct LocationsView: View {
     
     var body: some View {
         ZStack {
-            Map(
-                coordinateRegion: $viewModel.mapRegion,
-                annotationItems: viewModel.locations,
-                annotationContent: { location in
-                    MapAnnotation(coordinate: location.coordinates) {
-                        Text("Hello")
-                    }
-                }
-            )
-                .ignoresSafeArea()
+            mapLayer
             
             VStack(spacing: 0) {
                 header
@@ -80,6 +71,23 @@ extension LocationsView {
             .background(.thickMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .shadow(color: .black.opacity(0.3), radius: 20, x: 0, y: 15)
+    }
+    
+    private var mapLayer: some View {
+        Map(
+            coordinateRegion: $viewModel.mapRegion,
+            annotationItems: viewModel.locations,
+            annotationContent: { location in
+                MapAnnotation(coordinate: location.coordinates) {
+                    LocationMapAnnotationView()
+                        .scaleEffect(viewModel.currentLocation == location ? 1 : 0.7)
+                        .onTapGesture {
+                            viewModel.changeCurrentLocation(location: location)
+                        }
+                }
+            }
+        )
+            .ignoresSafeArea()
     }
 }
 
