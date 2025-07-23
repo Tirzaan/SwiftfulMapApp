@@ -63,4 +63,22 @@ class LocationsViewModel: ObservableObject {
             showLocationsList = false
         }
     }
+    
+    func changeToNextLocation() {
+        // Get the Current Index
+        guard let currentIndex = locations.firstIndex (where: { $0 == currentLocation }) else { return }
+        
+        // Check if the nextIndex is valid
+        let nextIndex = currentIndex + 1
+        guard locations.indices.contains(nextIndex) else {
+            // Next index is NOT valid
+            guard let firstLocation = locations.first else { return }
+            changeCurrentLocation(location: firstLocation)
+            return
+        }
+        
+        // Next index IS valid
+        let nextLocation = locations[nextIndex]
+        changeCurrentLocation(location: nextLocation)
+    }
 }
