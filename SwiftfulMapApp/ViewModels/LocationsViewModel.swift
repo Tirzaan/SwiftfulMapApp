@@ -51,7 +51,7 @@ class LocationsViewModel: ObservableObject {
         }
     }
     
-    private func toggleLocationsList() {
+    func toggleLocationsList() {
         withAnimation(.easeInOut) {
             showLocationsList.toggle()
         }
