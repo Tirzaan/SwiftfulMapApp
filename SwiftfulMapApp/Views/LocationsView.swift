@@ -43,6 +43,8 @@ extension LocationsView {
                             .foregroundStyle(.primary)
                             .padding()
                     }
+                
+                LocationsListView()
             }
             .background(.thickMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 10))
