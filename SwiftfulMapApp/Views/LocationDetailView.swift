@@ -8,11 +8,43 @@
 import SwiftUI
 
 struct LocationDetailView: View {
+    
+    let location: Location
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack {
+                imagesSection
+                
+                VStack() {
+                    
+                }
+            }
+        }
+        .ignoresSafeArea()
     }
 }
 
+extension LocationDetailView {
+    
+    /// the images for the current location as a slide view
+    private var imagesSection: some View {
+        TabView {
+            ForEach(location.imageNames, id: \.self) { imageName in
+                Image(imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: UIScreen.main.bounds.width)
+                    .clipped()
+            }
+        }
+        .frame(height: 500)
+        .tabViewStyle(.page)
+        .shadow(radius: 20, y: 10)
+    }
+    
+}
+
 #Preview {
-    LocationDetailView()
+    LocationDetailView(location: LocationsDataService.locations.first!)
 }
