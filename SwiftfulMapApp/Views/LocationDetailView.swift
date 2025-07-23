@@ -14,7 +14,7 @@ struct LocationDetailView: View {
     var body: some View {
         ScrollView {
             VStack {
-                imagesSection
+                imagesView
                 
                 VStack() {
                     
@@ -28,7 +28,7 @@ struct LocationDetailView: View {
 extension LocationDetailView {
     
     /// the images for the current location as a slide view
-    private var imagesSection: some View {
+    private var imagesView: some View {
         TabView {
             ForEach(location.imageNames, id: \.self) { imageName in
                 Image(imageName)
