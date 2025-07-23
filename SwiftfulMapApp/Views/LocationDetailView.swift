@@ -18,6 +18,8 @@ struct LocationDetailView: View {
                 
                 VStack(alignment: .leading, spacing: 16) {
                     titleView
+                    Divider()
+                    descriptionView
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
@@ -57,6 +59,16 @@ extension LocationDetailView {
         }
     }
     
+    private var descriptionView: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Description")
+                .font(.title)
+                .fontWeight(.semibold)
+            Text(location.description)
+                .font(.headline)
+                .foregroundStyle(.secondary)
+        }
+    }
 }
 
 #Preview {
