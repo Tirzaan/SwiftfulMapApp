@@ -16,7 +16,37 @@ struct LocationsView: View {
         ZStack {
             Map(coordinateRegion: $viewModel.mapRegion)
                 .ignoresSafeArea()
+            
+            VStack(spacing: 0) {
+                header
+                    .padding()
+                
+                Spacer()
+            }
         }
+    }
+}
+
+extension LocationsView {
+    private var header: some View {
+        
+            VStack {
+                Text(viewModel.currentLocation.name + ", " + viewModel.currentLocation.cityName)
+                    .font(.title2)
+                    .fontWeight(.black)
+                    .foregroundStyle(.primary)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .overlay(alignment: .leading) {
+                        Image(systemName: "arrow.down")
+                            .font(.headline)
+                            .foregroundStyle(.primary)
+                            .padding()
+                    }
+            }
+            .background(.thickMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .shadow(color: .black.opacity(0.3), radius: 20, x: 0, y: 15)
     }
 }
 
