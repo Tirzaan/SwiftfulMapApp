@@ -12,6 +12,7 @@ import MapKit
 struct LocationsView: View {
     
     @EnvironmentObject private var viewModel: LocationsViewModel
+    let maxWidthForIpad: CGFloat = 700
     
     var body: some View {
         ZStack {
@@ -63,6 +64,7 @@ extension LocationsView {
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .shadow(color: .black.opacity(0.3), radius: 20, x: 0, y: 15)
         .padding()
+        .frame(maxWidth: maxWidthForIpad)
     }
     
     /// The bottom view to show a picture of the location, the name, and the city name,
@@ -74,6 +76,8 @@ extension LocationsView {
                     LocationPreviewView(location: location)
                         .shadow(radius: 20)
                         .padding()
+                        .frame(maxWidth: maxWidthForIpad)
+                        .frame(maxWidth: .infinity)
                         .transition(AsymmetricTransition(
                             insertion: .move(edge: .trailing),
                             removal: .move(edge: .leading)
