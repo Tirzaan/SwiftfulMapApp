@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// The list of every location with the location's image, name, and city name
 struct LocationsListView: View {
     
     @EnvironmentObject private var viewModel: LocationsViewModel
@@ -29,6 +30,7 @@ struct LocationsListView: View {
 
 extension LocationsListView {
     
+    /// A row that shows the image, name, and city name of a location
     private func listRowView(location: Location) -> some View {
         HStack {
             if let imageName = location.imageNames.first {

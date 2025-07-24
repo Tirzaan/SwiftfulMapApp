@@ -8,6 +8,7 @@
 import SwiftUI
 import MapKit
 
+/// The details view of the current location
 struct LocationDetailView: View {
     
     @EnvironmentObject private var viewModel: LocationsViewModel
@@ -101,6 +102,7 @@ extension LocationDetailView {
             .clipShape(RoundedRectangle(cornerRadius: 30))
     }
     
+    /// The back button to dismiss the detail sheet
     private var backButton: some View {
         Button {
             viewModel.sheetLocation = nil

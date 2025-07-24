@@ -8,6 +8,7 @@
 import SwiftUI
 import MapKit
 
+/// The main view in the app to show the header, location preview, and map of the different locations
 struct LocationsView: View {
     
     @EnvironmentObject private var viewModel: LocationsViewModel

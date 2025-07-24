@@ -9,6 +9,7 @@ import Foundation
 import MapKit
 import SwiftUI
 
+/// The view model with the functions, updateMapRegion, toggleLocationsList, ect. It also has all the locations the current location, map region, ect.
 class LocationsViewModel: ObservableObject {
     
     @Published var locations: [Location]
@@ -45,6 +46,7 @@ class LocationsViewModel: ObservableObject {
         self.updateMapRegion(location: currentLocation)
     }
     
+    /// Updates the map region to the imported location
     private func updateMapRegion (location: Location) {
         withAnimation(.easeInOut) {
             mapRegion = MKCoordinateRegion(
@@ -54,12 +56,14 @@ class LocationsViewModel: ObservableObject {
         }
     }
     
+    /// Toggles the visibility of the locations list
     func toggleLocationsList() {
         withAnimation(.easeInOut) {
             showLocationsList.toggle()
         }
     }
     
+    /// Changes the current location to the imported location and hides the locations list
     func changeCurrentLocation(location: Location) {
         withAnimation(.easeInOut) {
             currentLocation = location
@@ -67,6 +71,7 @@ class LocationsViewModel: ObservableObject {
         }
     }
     
+    /// Changes the current location to the next location in the locations array
     func changeToNextLocation() {
         // Get the Current Index
         guard let currentIndex = locations.firstIndex (where: { $0 == currentLocation }) else { return }

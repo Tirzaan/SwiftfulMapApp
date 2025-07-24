@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// The Preview of the current location with the location's image, name, city name, a learn more button, and a next button
 struct LocationPreviewView: View {
     
     @EnvironmentObject private var viewModel: LocationsViewModel

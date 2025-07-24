@@ -8,6 +8,7 @@
 import Foundation
 import MapKit
 
+/// The data for each location with it's name, city name, coordinates, description, image names, and link
 class LocationsDataService {
     
     static let locations: [Location] = [

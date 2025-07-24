@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// The map icon for each location
 struct LocationMapAnnotationView: View {
     var body: some View {
         VStack(spacing: 0) {
