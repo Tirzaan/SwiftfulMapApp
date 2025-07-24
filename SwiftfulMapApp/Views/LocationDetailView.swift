@@ -103,7 +103,7 @@ extension LocationDetailView {
     
     private var backButton: some View {
         Button {
-            
+            viewModel.sheetLocation = nil
         } label: {
             Image(systemName: "xmark")
         }

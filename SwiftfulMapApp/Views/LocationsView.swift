@@ -22,8 +22,8 @@ struct LocationsView: View {
                 locationsPreview
             }
         }
-        .sheet(item: $) { <#Identifiable#> in
-            <#code#>
+        .sheet(item: $viewModel.sheetLocation) { location in
+            LocationDetailView(location: location)
         }
     }
 }
