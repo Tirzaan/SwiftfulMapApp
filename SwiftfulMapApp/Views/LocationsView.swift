@@ -25,7 +25,8 @@ struct LocationsView: View {
             }
         }
         .sheet(item: $viewModel.sheetLocation) { location in
-            LocationDetailView(location: location)
+                LocationDetailView(location: location)
+                    .presentationSizing(.page)
         }
     }
 }
