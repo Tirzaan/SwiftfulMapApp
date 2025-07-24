@@ -22,9 +22,6 @@ struct Location: Identifiable, Equatable {
     }
     
     static func == (lhs: Location, rhs: Location) -> Bool {
-        if lhs.id == rhs.id {
-            return true
-        }
-        return false
+        lhs.id == rhs.id
     }
 }
