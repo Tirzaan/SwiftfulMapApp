@@ -31,6 +31,7 @@ struct LocationDetailView: View {
         }
         .ignoresSafeArea()
         .background(.ultraThinMaterial)
+        .overlay(backButton, alignment: .topLeading)
     }
 }
 
@@ -98,6 +99,22 @@ extension LocationDetailView {
             .allowsHitTesting(false)
             .aspectRatio(1, contentMode: .fit)
             .clipShape(RoundedRectangle(cornerRadius: 30))
+    }
+    
+    private var backButton: some View {
+        Button {
+            
+        } label: {
+            Image(systemName: "xmark")
+        }
+        .font(.headline)
+        .padding(16)
+        .tint(.primary)
+        .background(.thickMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .shadow(radius: 4)
+        .padding()
+
     }
 }
 
